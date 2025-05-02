@@ -1,0 +1,17 @@
+{
+  "database": "items.db",
+  "version": 1,
+  "encrypted": false,
+  "mode": "full",
+  "tables": [
+    {
+      "name": "items",
+      "schema": [
+        {
+          "column": "name",
+          "value": "TEXT NOT NULL PRIMARY KEY"
+        }
+      ]
+    }
+  ]
+}
