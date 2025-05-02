@@ -1,1 +1,0 @@
-This is a CRUD project built with Ionic and Capacitor, utilizing SQLite for local storage. It enables users to perform basic database operations within the app, including adding, viewing, editing, and deleting records.
