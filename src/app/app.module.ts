@@ -15,6 +15,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
 
 jeepSqlite(window)
 
@@ -26,7 +27,8 @@ jeepSqlite(window)
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],

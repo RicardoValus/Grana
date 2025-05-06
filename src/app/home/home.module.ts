@@ -10,6 +10,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import {MatDividerModule} from '@angular/material/divider';
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSelectModule
   ],
   declarations: [HomePage]
 })

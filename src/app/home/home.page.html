@@ -1,116 +1,139 @@
 <header>
-  <h5>
+  <h2>
     <b>
       Olá, Ricardo
     </b>
-  </h5>
+  </h2>
 </header>
 
 <main>
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        <h5>
+  <section class="top">
+
+    <mat-card>
+      <div>
+        <mat-icon>
+          attach_money
+        </mat-icon>
+
+        <h3 class="title">
           Ganho total do mês
-        </h5>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h5>
+        </h3>
+      </div>
+
+      <span style="flex: 1 1 auto;"></span>
+
+      <div>
+        <h3>
           <b>
             R$ 1.200,00
           </b>
-        </h5>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-icon-button>
-        <mat-icon>add_circle</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        </h3>
+        <button mat-icon-button>
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </mat-card>
 
+    <mat-card>
+      <div>
+        <mat-icon>
+          money_off
+        </mat-icon>
 
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        <h5>
+        <h3 class="title">
           Total de gastos
-        </h5>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h5>
+        </h3>
+      </div>
+
+      <span style="flex: 1 1 auto;"></span>
+
+      <div>
+        <h3>
           <b>
-            R$ 900,00
+            R$ 600,00
           </b>
-        </h5>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-icon-button>
-        <mat-icon>add_circle</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        </h3>
+        <button mat-icon-button>
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </mat-card>
 
+    <mat-card>
+      <div>
+        <mat-icon>
+          account_balance_wallet
+        </mat-icon>
 
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        <h5>
+        <h3 class="title">
           Total restante
-        </h5>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h5>
+        </h3>
+      </div>
+
+      <span style="flex: 1 1 auto;"></span>
+
+      <div>
+        <h3>
           <b>
-            R$ 300,00
+            R$ 500,00
           </b>
-        </h5>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-icon-button>
-        <mat-icon>add_circle</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        </h3>
+        <button mat-icon-button>
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </mat-card>
 
+    <mat-card>
+      <div>
+        <mat-icon>
+          pie_chart
+        </mat-icon>
 
-
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        <h5>
+        <h3 class="title">
           Porcentagem gasta
-        </h5>
-      </mat-card-title>
-      <mat-card-subtitle>
-        <h5>
+        </h3>
+      </div>
+
+      <span style="flex: 1 1 auto;"></span>
+
+      <div>
+        <h3>
           <b>
-            80%
+            75%
           </b>
-        </h5>
-      </mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-actions align="end">
-      <button mat-icon-button>
-        <mat-icon>add_circle</mat-icon>
-      </button>
-    </mat-card-actions>
-  </mat-card>
+        </h3>
+        <button mat-icon-button>
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </mat-card>
 
+    <div class="circle">
+      <div></div>
+    </div>
+  </section>
 
+  <section class="bottom">
+    <div class="date">
+      <mat-form-field>
+        <mat-label>Data</mat-label>
+        <mat-select>
+          @for (date of dates; track date) {
+          <mat-option [value]="date.value">{{date.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <span style="flex: 1 1 auto;"></span>
+
+    <button mat-icon-button>
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </section>
 </main>
 
-<footer>
-  <button mat-icon-button>
-    <mat-icon>
-      visibility
-    </mat-icon>
-  </button>
-</footer>
 
 
 <!-- <ion-header [translucent]="true">
