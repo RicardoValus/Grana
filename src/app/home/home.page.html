@@ -1,9 +1,15 @@
 <header>
   <h2>
     <b>
-      Olá, Ricardo
+      Dashboard
     </b>
   </h2>
+
+  <span style="flex: 1 1 auto;"></span>
+
+  <button mat-icon-button color="warn" (click)="limparDadosMes()" matTooltip="Limpar dados do mês">
+    <mat-icon>delete</mat-icon>
+  </button>
 </header>
 
 <main>
@@ -25,10 +31,10 @@
       <div>
         <h3>
           <b>
-            R$ 1.200,00
+            R$ {{totalGanhos | number:'1.2-2'}}
           </b>
         </h3>
-        <button mat-icon-button>
+        <button mat-icon-button (click)="irParaGanhos()">
           <mat-icon>arrow_forward_ios</mat-icon>
         </button>
       </div>
@@ -50,10 +56,10 @@
       <div>
         <h3>
           <b>
-            R$ 600,00
+            R$ {{totalGastos | number:'1.2-2'}}
           </b>
         </h3>
-        <button mat-icon-button>
+        <button mat-icon-button routerLink="/gastos">
           <mat-icon>arrow_forward_ios</mat-icon>
         </button>
       </div>
@@ -75,10 +81,10 @@
       <div>
         <h3>
           <b>
-            R$ 500,00
+            R$ {{totalGanhos - totalGastos | number:'1.2-2'}}
           </b>
         </h3>
-        <button mat-icon-button>
+        <button mat-icon-button routerLink="/total-restante">
           <mat-icon>arrow_forward_ios</mat-icon>
         </button>
       </div>
@@ -100,70 +106,40 @@
       <div>
         <h3>
           <b>
-            75%
+            {{porcentagemGasta.toFixed(1)}}%
           </b>
         </h3>
-        <button mat-icon-button>
+        <button mat-icon-button routerLink="/porcentagem-gasta">
           <mat-icon>arrow_forward_ios</mat-icon>
         </button>
       </div>
     </mat-card>
 
     <div class="circle">
-      <div></div>
+      <canvas #graficoCanvas></canvas>
     </div>
   </section>
 
   <section class="bottom">
     <div class="date">
       <mat-form-field>
-        <mat-label>Data</mat-label>
-        <mat-select>
-          @for (date of dates; track date) {
-          <mat-option [value]="date.value">{{date.viewValue}}</mat-option>
-          }
+        <mat-label>Mês</mat-label>
+        <mat-select [(ngModel)]="mesSelecionado" name="mes" (selectionChange)="onMesChange($event)">
+          <mat-option *ngFor="let date of dates" [value]="date.value">
+            {{date.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Ano</mat-label>
+        <mat-select [(ngModel)]="anoSelecionado" name="ano" (selectionChange)="onMesChange($event)">
+          <mat-option *ngFor="let ano of anos" [value]="ano">
+            {{ano}}
+          </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
-
-    <span style="flex: 1 1 auto;"></span>
-
-    <button mat-icon-button>
-      <mat-icon>refresh</mat-icon>
-    </button>
   </section>
 </main>
 
-
-
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title class="title">
-      SQLite
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-input label="Adicione algo: " [(ngModel)]="item" name="item">
-    </ion-input>
-    <ion-button (click)="create()" fill="outline" color="dark">
-      <ion-icon name="add-outline" slot="icon-only"></ion-icon>
-    </ion-button>
-  </ion-item>
-
-  <ion-list class="items">
-    <ion-item *ngFor="let item of items">
-      <ion-label>
-        Item: {{ item }}
-      </ion-label>
-      <ion-button slot="end" fill="outline" (click)="update(item)" color="dark">
-        <ion-icon slot="icon-only" name="pencil-outline" color="dark"></ion-icon>
-      </ion-button>
-      <ion-button slot="end" fill="outline" (click)="delete(item)" color="danger">
-        <ion-icon slot="icon-only" name="trash-outline" color="danger"></ion-icon>
-      </ion-button>
-    </ion-item>
-  </ion-list>
-</ion-content> -->

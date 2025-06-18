@@ -11,15 +11,14 @@ import { SqliteService } from './services/sqlite.service';
 export class AppComponent {
   public isWeb: boolean;
   public load: boolean;
-  public sqlite: SqliteService; // Declare a propriedade sqlite
-
+  public sqlite: SqliteService;   
   constructor(
     private platform: Platform,
     sqlite: SqliteService
   ) {
     this.isWeb = false;
     this.load = false;
-    this.sqlite = sqlite; // Atribua o serviço SqliteService à propriedade sqlite
+      this.sqlite = sqlite;
     this.initApp();
   }
 

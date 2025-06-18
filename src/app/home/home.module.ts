@@ -11,7 +11,16 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSelectModule} from '@angular/material/select';
-
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { GanhosService } from '../services/ganhos.service';
+import { GastosService } from '../services/gastos.service';
+import { SqliteService } from '../services/sqlite.service';
+import { MesService } from '../services/mes.service';
 
 @NgModule({
   imports: [
@@ -23,8 +32,20 @@ import {MatSelectModule} from '@angular/material/select';
     MatCardModule,
     MatButtonModule,
     MatDividerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTooltipModule,
+    MatFormFieldModule,
+    MatTableModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage],
+  providers: [
+    GanhosService,
+    GastosService,
+    SqliteService,
+    MesService
+  ]
 })
 export class HomePageModule {}

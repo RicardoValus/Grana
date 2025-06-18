@@ -12,6 +12,68 @@
           "value": "TEXT NOT NULL PRIMARY KEY"
         }
       ]
+    },
+    {
+      "name": "ganhos",
+      "schema": [
+        {
+          "column": "id",
+          "value": "INTEGER PRIMARY KEY AUTOINCREMENT"
+        },
+        {
+          "column": "mes",
+          "value": "TEXT NOT NULL"
+        },
+        {
+          "column": "ano",
+          "value": "INTEGER NOT NULL"
+        },
+        {
+          "column": "descricao",
+          "value": "TEXT NOT NULL"
+        },
+        {
+          "column": "valor",
+          "value": "REAL NOT NULL"
+        },
+        {
+          "column": "data",
+          "value": "TEXT NOT NULL"
+        }
+      ]
+    },
+    {
+      "name": "gastos",
+      "schema": [
+        {
+          "column": "id",
+          "value": "INTEGER PRIMARY KEY AUTOINCREMENT"
+        },
+        {
+          "column": "mes",
+          "value": "TEXT NOT NULL"
+        },
+        {
+          "column": "ano",
+          "value": "INTEGER NOT NULL"
+        },
+        {
+          "column": "descricao",
+          "value": "TEXT NOT NULL"
+        },
+        {
+          "column": "valor",
+          "value": "REAL NOT NULL"
+        },
+        {
+          "column": "data",
+          "value": "TEXT NOT NULL"
+        },
+        {
+          "column": "categoria",
+          "value": "TEXT NOT NULL"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Porcentagem Gasta</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card class="chart-card">
+      <ion-card-header>
+        <ion-card-title>Distribuição de Gastos</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="chart-container">
+          <canvas #pieChart></canvas>
+        </div>
+        <div class="summary">
+          <div class="summary-item">
+            <span>Total de Ganhos:</span>
+            <span class="value">R$ {{totalGanhos | number:'1.2-2'}}</span>
+          </div>
+          <div class="summary-item">
+            <span>Total de Gastos:</span>
+            <span class="value">R$ {{totalGastos | number:'1.2-2'}}</span>
+          </div>
+          <div class="summary-item">
+            <span>Porcentagem Gasta:</span>
+            <span class="value" [class.warning]="porcentagemGasta > 80">
+              {{porcentagemGasta | number:'1.0-0'}}%
+            </span>
+          </div>
+          <div class="summary-item">
+            <span>Porcentagem Restante:</span>
+            <span class="value positive">
+              {{porcentagemRestante | number:'1.0-0'}}%
+            </span>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card class="filter-card">
+      <ion-card-content>
+        <mat-form-field>
+          <mat-label>Mês</mat-label>
+          <mat-select [(ngModel)]="mesSelecionado" (selectionChange)="onMesChange()">
+            <mat-option *ngFor="let date of dates" [value]="date.value">
+              {{date.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content> 

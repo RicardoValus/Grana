@@ -1,0 +1,135 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Gerenciar Gastos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <ion-card class="form-card">
+      <ion-card-header>
+        <ion-card-title>Adicionar Novo Gasto</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <form (ngSubmit)="adicionarGasto()">
+          <div class="form-row">
+            <mat-form-field>
+              <mat-label>Mês</mat-label>
+              <mat-select [(ngModel)]="mesSelecionado" name="mes" (selectionChange)="onMesChange($event)">
+                <mat-option *ngFor="let date of dates" [value]="date.value">
+                  {{date.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Ano</mat-label>
+              <mat-select [(ngModel)]="anoSelecionado" name="ano" (selectionChange)="onMesChange($event)">
+                <mat-option *ngFor="let ano of anos" [value]="ano">
+                  {{ano}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input matInput [(ngModel)]="novoGasto.descricao" name="descricao" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="novoGasto.categoria" name="categoria" required>
+              <mat-option *ngFor="let categoria of categorias" [value]="categoria">
+                {{categoria}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" [(ngModel)]="novoGasto.valor" name="valor" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Data</mat-label>
+            <input matInput type="date" [(ngModel)]="novoGasto.data" name="data" required>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">Adicionar Gasto</button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Gastos do Mês</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <table mat-table [dataSource]="gastos" class="mat-elevation-z8">
+          <ng-container matColumnDef="data">
+            <th mat-header-cell *matHeaderCellDef>Data</th>
+            <td mat-cell *matCellDef="let gasto">{{gasto.data | date:'dd/MM/yyyy'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef>Descrição</th>
+            <td mat-cell *matCellDef="let gasto">{{gasto.descricao}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="categoria">
+            <th mat-header-cell *matHeaderCellDef>Categoria</th>
+            <td mat-cell *matCellDef="let gasto">{{gasto.categoria}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let gasto">R$ {{gasto.valor.toFixed(2)}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let gasto">
+              <button mat-icon-button color="warn" (click)="excluirGasto(gasto.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['data', 'descricao', 'categoria', 'valor', 'acoes']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['data', 'descricao', 'categoria', 'valor', 'acoes'];"></tr>
+        </table>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-row class="ion-align-items-center ion-justify-content-center">
+      <ion-col size="12" size-md="6" class="ion-text-center">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Mês</mat-label>
+          <mat-select [(ngModel)]="mesSelecionado" name="mes" (selectionChange)="onMesChange($event)">
+            <mat-option *ngFor="let date of dates" [value]="date.value">
+              {{date.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ion-col>
+      <ion-col size="12" size-md="6" class="ion-text-center">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Ano</mat-label>
+          <mat-select [(ngModel)]="anoSelecionado" name="ano" (selectionChange)="onMesChange($event)">
+            <mat-option *ngFor="let ano of anos" [value]="ano">
+              {{ano}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer> 

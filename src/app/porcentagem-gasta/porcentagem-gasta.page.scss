@@ -1,0 +1,82 @@
+:host {
+  > ion-header {
+    background-color: #0057A0;
+    height: 15%;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 5% 5%;
+  }
+
+  > ion-content {
+    height: 85%;
+    background-color: #F2F2F2;
+    overflow-y: auto;
+    padding: 5%;
+  }
+}
+
+.container {
+  padding: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.chart-card {
+  margin-bottom: 24px;
+}
+
+.chart-container {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.summary {
+  margin-top: 24px;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .value {
+    font-weight: 500;
+    font-size: 1.1em;
+
+    &.positive {
+      color: #4caf50;
+    }
+
+    &.warning {
+      color: #ff9800;
+    }
+  }
+}
+
+.filter-card {
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .chart-container {
+    height: 300px;
+  }
+
+  .summary-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+} 
