@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar style="--background: #007A00;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -7,13 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" style="--background: #4F4F4F;">
   <div class="container">
-    <ion-card class="summary-card">
-      <ion-card-header>
+    <ion-card class="summary-card" style="--background: #2F3435; color: #ffffff;">
+      <ion-card-header style="display: flex; flex-direction: row; align-items: center;">
         <ion-card-title>Resumo Financeiro</ion-card-title>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button (click)="mostrarResumo = !mostrarResumo">
+          <mat-icon>{{ mostrarResumo ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content *ngIf="mostrarResumo">
         <div class="summary-item">
           <span>Total de Ganhos:</span>
           <span class="value">R$ {{totalGanhos | number:'1.2-2'}}</span>
@@ -37,7 +41,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="filter-card">
+    <ion-card class="filter-card" style="--background: #2F3435;">
       <ion-card-content>
         <mat-form-field>
           <mat-label>Mês</mat-label>

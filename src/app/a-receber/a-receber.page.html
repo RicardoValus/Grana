@@ -1,0 +1,116 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #007A00;">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>A Receber</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" style="--background: #4F4F4F;">
+  <div class="container">
+    <ion-card class="form-card" style="--background: #2F3435;">
+      <ion-card-header style="display: flex; flex-direction: row; align-items: center;">
+        <ion-card-title>Adicionar a Receber</ion-card-title>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button (click)="mostrarFormAReceber = !mostrarFormAReceber">
+          <mat-icon>{{ mostrarFormAReceber ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      </ion-card-header>
+      <ion-card-content *ngIf="mostrarFormAReceber">
+        <form (ngSubmit)="adicionarAReceber()">
+          <div class="form-row">
+            <mat-form-field>
+              <mat-label>Mês</mat-label>
+              <mat-select [(ngModel)]="mesSelecionado" name="mes" (selectionChange)="onMesChange()">
+                <mat-option *ngFor="let date of dates" [value]="date.value">
+                  {{date.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field>
+              <mat-label>Ano</mat-label>
+              <mat-select [(ngModel)]="anoSelecionado" name="ano" (selectionChange)="onMesChange()">
+                <mat-option *ngFor="let ano of anos" [value]="ano">
+                  {{ano}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <mat-form-field>
+            <mat-label>Descrição</mat-label>
+            <input matInput [(ngModel)]="novoAReceber.descricao" name="descricao" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Valor</mat-label>
+            <input matInput type="number" [(ngModel)]="novoAReceber.valor" name="valor" required>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Data</mat-label>
+            <input matInput type="date" [(ngModel)]="novoAReceber.data" name="data" required>
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" type="submit">Adicionar</button>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card style="--background: #2F3435;">
+      <ion-card-header style="display: flex; flex-direction: row; align-items: center;">
+        <ion-card-title>Registros a Receber</ion-card-title>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button (click)="mostrarListaAReceber = !mostrarListaAReceber">
+          <mat-icon>{{ mostrarListaAReceber ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
+      </ion-card-header>
+      <ion-card-content *ngIf="mostrarListaAReceber">
+        <table mat-table [dataSource]="aReceber" class="mat-elevation-z8">
+          <ng-container matColumnDef="data">
+            <th mat-header-cell *matHeaderCellDef>Data</th>
+            <td mat-cell *matCellDef="let item">{{item.data | date:'dd/MM/yyyy'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef>Descrição</th>
+            <td mat-cell *matCellDef="let item">{{item.descricao}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="valor">
+            <th mat-header-cell *matHeaderCellDef>Valor</th>
+            <td mat-cell *matCellDef="let item">R$ {{item.valor | number:'1.2-2'}}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef>Status</th>
+            <td mat-cell *matCellDef="let item">
+              <span [ngClass]="{'pendente': item.status === 'PENDENTE', 'recebido': item.status === 'RECEBIDO'}">
+                {{item.status}}
+              </span>
+              <button *ngIf="item.status === 'PENDENTE'" mat-button color="accent" (click)="atualizarStatus(item.id, 'RECEBIDO')">Marcar como Recebido</button>
+              <button *ngIf="item.status === 'RECEBIDO'" mat-button color="warn" (click)="atualizarStatus(item.id, 'PENDENTE')">Desfazer</button>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef>Ações</th>
+            <td mat-cell *matCellDef="let item">
+              <button mat-icon-button color="warn" (click)="excluirAReceber(item.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="['data', 'descricao', 'valor', 'status', 'acoes']"></tr>
+          <tr mat-row *matRowDef="let row; columns: ['data', 'descricao', 'valor', 'status', 'acoes'];"></tr>
+        </table>
+        <div *ngIf="aReceber.length === 0 && !carregando" style="color: #fff; margin-top: 16px;">Nenhum registro encontrado.</div>
+        <div *ngIf="carregando" style="color: #fff; margin-top: 16px;">Carregando...</div>
+        <div *ngIf="erro" style="color: #ff5252; margin-top: 16px;">{{erro}}</div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

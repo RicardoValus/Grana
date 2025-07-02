@@ -35,15 +35,30 @@ export class PorcentagemGastaPage implements OnInit, AfterViewInit {
     { value: '12', viewValue: 'Dezembro' }
   ];
 
-  mesSelecionado: string = this.meses[new Date().getMonth()].value;
-  anoSelecionado: number = new Date().getFullYear();
+  mesSelecionado: string;
+  anoSelecionado: number;
   dates = this.mesService.dates;
+
+  set mostrarDistribuicao(value: boolean) {
+    this._mostrarDistribuicao = value;
+    if (value) {
+      setTimeout(() => this.criarGrafico(), 0);
+    }
+  }
+  get mostrarDistribuicao(): boolean {
+    return this._mostrarDistribuicao;
+  }
+  private _mostrarDistribuicao: boolean = true;
 
   constructor(
     private sqlite: SqliteService,
     private router: Router,
     private mesService: MesService
-  ) {}
+  ) {
+    this.mesSelecionado = this.mesService.getMesAtual().toString();
+    this.anoSelecionado = this.mesService.getAnoAtual();
+    this.dates = this.mesService.dates;
+  }
 
   ngOnInit() {
     this.carregarDados();

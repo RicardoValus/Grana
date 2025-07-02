@@ -115,11 +115,35 @@
       </div>
     </mat-card>
 
-    <div class="circle">
-      <canvas #graficoCanvas></canvas>
-    </div>
+    <mat-card>
+      <div>
+        <mat-icon>
+          savings
+        </mat-icon>
+
+        <h3 class="title">
+          A receber
+        </h3>
+      </div>
+
+      <span style="flex: 1 1 auto;"></span>
+
+      <div>
+        <h3>
+          <b>
+            R$ {{totalAReceber | number:'1.2-2'}}
+          </b>
+        </h3>
+        <button mat-icon-button routerLink="/a-receber">
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </button>
+      </div>
+    </mat-card>
   </section>
 
+</main>
+
+<footer>
   <section class="bottom">
     <div class="date">
       <mat-form-field>
@@ -141,5 +165,4 @@
       </mat-form-field>
     </div>
   </section>
-</main>
-
+</footer>

@@ -13,8 +13,10 @@ export class TotalRestantePage implements OnInit {
   totalGastos: number = 0;
   totalRestante: number = 0;
   porcentagemGasta: number = 0;
-  mesSelecionado: number = new Date().getMonth() + 1;
+  mesSelecionado: string;
+  anoSelecionado: number;
   dates = this.mesService.dates;
+  mostrarResumo: boolean = true;
 
   meses = [
     { value: '01', viewValue: 'Janeiro' },
@@ -31,13 +33,15 @@ export class TotalRestantePage implements OnInit {
     { value: '12', viewValue: 'Dezembro' }
   ];
 
-  anoSelecionado: number = new Date().getFullYear();
-
   constructor(
     private sqlite: SqliteService,
     private router: Router,
     private mesService: MesService
-  ) {}
+  ) {
+    this.mesSelecionado = this.mesService.getMesAtual().toString();
+    this.anoSelecionado = this.mesService.getAnoAtual();
+    this.dates = this.mesService.dates;
+  }
 
   ngOnInit() {
     this.carregarDados();

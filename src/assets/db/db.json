@@ -74,6 +74,18 @@
           "value": "TEXT NOT NULL"
         }
       ]
+    },
+    {
+      "name": "a_receber",
+      "schema": [
+        { "column": "id", "value": "INTEGER PRIMARY KEY AUTOINCREMENT" },
+        { "column": "mes", "value": "TEXT NOT NULL" },
+        { "column": "ano", "value": "INTEGER NOT NULL" },
+        { "column": "descricao", "value": "TEXT NOT NULL" },
+        { "column": "valor", "value": "REAL NOT NULL" },
+        { "column": "data", "value": "TEXT NOT NULL" },
+        { "column": "status", "value": "TEXT NOT NULL" }
+      ]
     }
   ]
 }

@@ -350,4 +350,55 @@ export class SqliteService {
     return result;
   }
 
+  async getAReceber(mes: number, ano: number): Promise<any[]> {
+    const query = 'SELECT * FROM a_receber WHERE mes = ? AND ano = ? ORDER BY data DESC';
+    const result = await this.query({
+      database: await this.getDbName(),
+      statement: query,
+      values: [mes, ano]
+    });
+    const aReceber = [];
+    for (let i = 0; i < result.values.length; i++) {
+      aReceber.push(result.values[i]);
+    }
+    return aReceber;
+  }
+
+  async adicionarAReceber(aReceber: any): Promise<any> {
+    const query = 'INSERT INTO a_receber (descricao, valor, data, mes, ano, status) VALUES (?, ?, ?, ?, ?, ?)';
+    const result = await this.query({
+      database: await this.getDbName(),
+      statement: query,
+      values: [
+        aReceber.descricao,
+        aReceber.valor,
+        aReceber.data,
+        aReceber.mes,
+        aReceber.ano,
+        aReceber.status
+      ]
+    });
+    return result;
+  }
+
+  async excluirAReceber(id: number): Promise<any> {
+    const query = 'DELETE FROM a_receber WHERE id = ?';
+    const result = await this.query({
+      database: await this.getDbName(),
+      statement: query,
+      values: [id]
+    });
+    return result;
+  }
+
+  async atualizarStatusAReceber(id: number, status: string): Promise<any> {
+    const query = 'UPDATE a_receber SET status = ? WHERE id = ?';
+    const result = await this.query({
+      database: await this.getDbName(),
+      statement: query,
+      values: [status, id]
+    });
+    return result;
+  }
+
 }

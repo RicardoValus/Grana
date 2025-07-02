@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar style="--background: #007A00;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -7,13 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" style="--background: #4F4F4F;">
   <div class="container">
-    <ion-card class="form-card">
-      <ion-card-header>
+    <ion-card class="form-card" style="--background: #2F3435;">
+      <ion-card-header style="display: flex; flex-direction: row; align-items: center;">
         <ion-card-title>Adicionar Novo Ganho</ion-card-title>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button (click)="mostrarFormGanho = !mostrarFormGanho">
+          <mat-icon>{{ mostrarFormGanho ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content *ngIf="mostrarFormGanho">
         <form (ngSubmit)="adicionarGanho()">
           <div class="form-row">
             <mat-form-field>
@@ -55,11 +59,15 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card>
-      <ion-card-header>
+    <ion-card style="--background: #2F3435;">
+      <ion-card-header style="display: flex; flex-direction: row; align-items: center;">
         <ion-card-title>Ganhos do Mês</ion-card-title>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button (click)="mostrarListaGanhos = !mostrarListaGanhos">
+          <mat-icon>{{ mostrarListaGanhos ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content *ngIf="mostrarListaGanhos">
         <table mat-table [dataSource]="ganhos" class="mat-elevation-z8">
           <ng-container matColumnDef="data">
             <th mat-header-cell *matHeaderCellDef>Data</th>
@@ -92,30 +100,3 @@
     </ion-card>
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <ion-row class="ion-align-items-center ion-justify-content-center">
-      <ion-col size="12" size-md="6" class="ion-text-center">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Mês</mat-label>
-          <mat-select [(ngModel)]="mesSelecionado" name="mes" (selectionChange)="onMesChange($event)">
-            <mat-option *ngFor="let date of dates" [value]="date.value">
-              {{date.viewValue}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </ion-col>
-      <ion-col size="12" size-md="6" class="ion-text-center">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Ano</mat-label>
-          <mat-select [(ngModel)]="anoSelecionado" name="ano" (selectionChange)="onMesChange($event)">
-            <mat-option *ngFor="let ano of anos" [value]="ano">
-              {{ano}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer> 

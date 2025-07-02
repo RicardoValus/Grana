@@ -10,31 +10,33 @@ import { AlertController } from '@ionic/angular';
 })
 export class GanhosPage implements OnInit {
   ganhos: any[] = [];
-  mesSelecionado: number;
+  mesSelecionado: string;
   anoSelecionado: number;
   novoGanho: { descricao: string; valor: number; mes: string; ano: number; data: string };
   dates: DateValue[];
   anos: number[] = [];
   carregando: boolean = true;
   erro: string = '';
+  mostrarFormGanho: boolean = true;
+  mostrarListaGanhos: boolean = true;
 
   constructor(
     private sqliteService: SqliteService,
     private mesService: MesService,
     private alertController: AlertController
   ) {
-    this.mesSelecionado = this.mesService.getMesSelecionado();
-    this.anoSelecionado = this.mesService.getAnoSelecionado();
+    this.mesSelecionado = this.mesService.getMesAtual().toString();
+    this.anoSelecionado = this.mesService.getAnoAtual();
     this.dates = this.mesService.dates;
     this.novoGanho = {
       descricao: '',
       valor: 0,
-      mes: this.mesSelecionado.toString(),
+      mes: this.mesSelecionado,
       ano: this.anoSelecionado,
       data: new Date().toISOString()
     };
 
-    const anoAtual = new Date().getFullYear();
+    const anoAtual = this.anoSelecionado;
     for (let i = anoAtual - 5; i <= anoAtual + 5; i++) {
       this.anos.push(i);
     }
@@ -54,7 +56,7 @@ export class GanhosPage implements OnInit {
       const result = await this.sqliteService.query({
         database: dbName,
         statement: sql,
-        values: [this.mesSelecionado.toString(), this.anoSelecionado.toString()]
+        values: [this.mesSelecionado, this.anoSelecionado.toString()]
       });
 
       this.ganhos = result.values || [];
@@ -87,7 +89,7 @@ export class GanhosPage implements OnInit {
           values: [
             this.novoGanho.descricao,
             this.novoGanho.valor,
-            this.mesSelecionado.toString(),
+            this.mesSelecionado,
             this.anoSelecionado.toString(),
             this.novoGanho.data
           ]
@@ -97,7 +99,7 @@ export class GanhosPage implements OnInit {
       this.novoGanho = {
         descricao: '',
         valor: 0,
-        mes: this.mesSelecionado.toString(),
+        mes: this.mesSelecionado,
         ano: this.anoSelecionado,
         data: new Date().toISOString()
       };
@@ -155,7 +157,7 @@ export class GanhosPage implements OnInit {
   }
 
   onMesChange(event: any) {
-    this.mesService.setMesSelecionado(this.mesSelecionado);
+    this.mesService.setMesSelecionado(Number(this.mesSelecionado));
     this.mesService.setAnoSelecionado(this.anoSelecionado);
     this.carregarGanhos();
   }

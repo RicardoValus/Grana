@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'porcentagem-gasta',
     loadChildren: () => import('./porcentagem-gasta/porcentagem-gasta.module').then(m => m.PorcentagemGastaPageModule)
+  },
+  {
+    path: 'a-receber',
+    loadChildren: () => import('./a-receber/a-receber.module').then( m => m.AReceberPageModule)
   }
 ];
 

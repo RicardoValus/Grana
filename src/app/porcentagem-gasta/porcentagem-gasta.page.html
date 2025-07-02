@@ -1,5 +1,5 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar style="--background: #007A00;">
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/home"></ion-back-button>
     </ion-buttons>
@@ -7,13 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <div class="container">
-    <ion-card class="chart-card">
-      <ion-card-header>
+<ion-content [fullscreen]="true" style="--background: #4F4F4F;">
+  <div class="container"> 
+    <ion-card class="chart-card" style="--background: #2F3435; color: #ffffff;">
+      <ion-card-header style="display: flex; flex-direction: row; align-items: center;">
         <ion-card-title>Distribuição de Gastos</ion-card-title>
+        <span style="flex: 1 1 auto;"></span>
+        <button mat-icon-button (click)="mostrarDistribuicao = !mostrarDistribuicao">
+          <mat-icon>{{ mostrarDistribuicao ? 'visibility' : 'visibility_off' }}</mat-icon>
+        </button>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content *ngIf="mostrarDistribuicao">
         <div class="chart-container">
           <canvas #pieChart></canvas>
         </div>
@@ -42,7 +46,7 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-card class="filter-card">
+    <ion-card class="filter-card" style="--background: #2F3435;">
       <ion-card-content>
         <mat-form-field>
           <mat-label>Mês</mat-label>

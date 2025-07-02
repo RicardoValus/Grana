@@ -1,7 +1,7 @@
 :host {
 
   >header {
-    background-color: #0057A0;
+    background-color: #007A00;
     height: 15%;
     display: flex;
     align-items: flex-end;
@@ -16,13 +16,13 @@
   }
 
   >main {
-    height: 85%;
-    background-color: #F2F2F2;
+    background-color: #7F8C8D;
     overflow-y: auto;
     padding: 5%;
     justify-content: space-between;
     display: flex;
     flex-direction: column;
+    height: 100vh;
 
     >section.top {
       display: flex;
@@ -32,7 +32,7 @@
       >mat-card {
         margin-bottom: 1rem;
         border-radius: 10px;
-        background-color: #3498DB;
+        background-color: #27AE60;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -57,13 +57,21 @@
         margin-bottom: 1rem;
 
         >div {
-          background-color: #0057A0;
+          background-color: #007A00;
           width: 200px;
           height: 200px;
           border-radius: 50%;
         }
       }
     }
+  }
+
+  >footer{
+    bottom: 0;
+  position: absolute;
+  width: 100%;
+  padding: 1rem;
+
 
     >section.bottom {
       display: flex;
@@ -81,7 +89,7 @@
 
       >button {
         margin-left: 1rem;
-        background-color: #0057A0;
+        background-color: #007A00;
       }
     }
   }
